@@ -1,18 +1,10 @@
-include <stdio.h>
+#include <stdio.h>
 
-/**
- * main - prints the lowercase of the alphabets
- *
- * Return: 0(Success)
- */
-int main(void)
-{
-	char ch;
-
-	for (ch = 'a' ; ch <= 'z' ; ch++)
-	{
-		putchar(ch);
-	}
-	putchar('\n');
-	return (0);
+int main(void) {
+    int i;
+    for (i = 97; i <= 122; i++) {
+        putchar(i);
+    }
+    putchar('\n');
+    return 0;
 }
