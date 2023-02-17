@@ -1,10 +1,16 @@
 #include <stdio.h>
-
-int main(void) {
-    int i;
-    for (i = 97; i <= 122; i++) {
-        putchar(i);
-    }
-    putchar('\n');
-    return 0;
+#include <time.h>
+#include <stdlib.h>
+/**
+ * main - Entry point
+ *
+ * Return: Always 0 (Success)
+ */
+int main(void)
+{
+int ch = 'a';
+for (ch = 'a'; ch <= 'z'; ch++)
+putchar(ch);
+putchar('\n');
+return (0);
 }
