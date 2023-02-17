@@ -1,30 +1,30 @@
 #include <stdio.h>
-#include <stdiib.h>
+#include <stdlib.h>
 #include <time.h>
 
-int main(){
-        int n;
+/**
+ * main - print if the number is positive,negative or 0
+ * Return: Always 0
+ */
+int main(void)
+{
+	int n;
 
-        /* SEED THE RANDOM NUMBER GENERATOR WITH THE CURRENT TIME */
-        srand(time(NULL));
-        
-        /*GENERATE A RANDOM NUMBER BETWEEN -10 AND 10*/
-        n = rand() % 21 - 10;
-        
-        /*PRINT THE NUMBER*/
-        printf("The number %d is ", n);
-        
-        /*CHECK IF THE NUMBER IS POSITIVE, NEGATIVE, OR ZERO*/
-        if (n > 0){
-            printf("number is positive\n");
-            }
-        else if (n < 0){
-             printf("number is negative\n");
-        }
-        else{
-            printf("number is zero\n");
-       }
-       
-       return 0;
-     }
+	srand(time(0));
+	n = rand() - RAND_MAX / 2;
 
+	if (n > 0)
+	{
+		printf("%d is positive\n", n);
+	}
+	else if (n == 0)
+	{
+		printf("%d is zero\n", n);
+	}
+	else
+	{
+		printf("%d is negative\n", n);
+	}
+
+	return (0);
+}
