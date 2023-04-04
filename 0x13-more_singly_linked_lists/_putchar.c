@@ -1,7 +1,6 @@
 #include "lists.h"
 
-
-int _putchar(char my_char)
+int _putchar(char character)
 {
-    return (write(1, &my_char, 1));
+	return (write(1, &character, 1));
 }
