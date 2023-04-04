@@ -1,21 +1,18 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "lists.h"
 
 void free_listint2(listint_t **head)
 {
-	listint_t *free_ptr;
-	listint_t *ptr;
+	listint_t *temp_node;
 
-	if (head != NULL)
+	if (head == NULL)
+		return;
+
+	while (*head != NULL)
 	{
-		ptr = *head;
-		while ((free_ptr = ptr) != NULL)
-		{
-			ptr = ptr->next;
-			free(free_ptr);
-		}
-		*head = NULL;
+		temp_node = (*head)->next;
+		free(*head);
+		*head = temp_node;
 	}
+
+	*head = NULL;
 }
