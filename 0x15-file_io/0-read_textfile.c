@@ -1,9 +1,9 @@
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include <sys/uio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <stdlib.h>
 
 /**
  * read_textfile - A function that reads a text file and prints
@@ -43,7 +43,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
     close(fd);
 
     if (bytes_written < 0)
-        return (0);
+                  return (0);
 
-    return((ssize_t)bytes_written);
+    return ((ssize_t)bytes_written);
 }
