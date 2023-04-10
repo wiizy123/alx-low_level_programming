@@ -3,6 +3,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/uio.h>
 
 /**
  * read_textfile - A function that reads a text file and prints
@@ -25,14 +26,14 @@ ssize_t read_textfile(const char *filename, size_t letters)
         return (0);
 
     fd = open(filename, O_RDONLY);
-    if (fd == -1)
+    if (fd < 0)
     {
         free(buffer);
         return (0);
     }
 
     bytes_read = read(fd, buffer, letters);
-    if (bytes_read == -1)
+    if (bytes_read < 0)
     {
         free(buffer);
         return (0);
@@ -42,8 +43,8 @@ ssize_t read_textfile(const char *filename, size_t letters)
     free(buffer);
     close(fd);
 
-    if (bytes_written == -1)
+    if (bytes_written < 0)
         return (0);
 
-    return (bytes_written);
+    return((ssize_t)bytes_written);
 }
