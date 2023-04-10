@@ -10,30 +10,21 @@
  */
 void print_binary(unsigned long int n)
 {
-	unsigned long int p = 2, b = 0;
-	int i;
-	
-	for (i = 0; p <= n && i < 62; i++)
+	unsigned long int mask = 1;
+	int len = 0;
+
+	while ((n >> len) > 0)
+		len++;
+
+	len--;
+
+	while (len >= 0)
 	{
-		p = p << 1;
-	}
+		if ((n & (mask << len)) == 0)
+			_putchar('0');
+		else
+			_putchar('1');
 
-	if (i != 62)
-		p = p >> 1;
-
-	for (; p != 0; p = p >> 1)
-	{
-		b = n & p;
-
-		switch (b)
-		{
-			case 0:
-				_putchar('0');
-				break;
-
-			case 1:
-				_putchar('1');
-				break;
-		}
+		len--;
 	}
 }
