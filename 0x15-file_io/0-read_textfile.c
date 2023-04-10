@@ -1,48 +1,48 @@
-#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/uio.h>
+#include <unistd.h>
+#include <fcntl.h>
 #include <stdlib.h>
 
 /**
- * read_file - reads a file and prints its contents to the console
- * @filename: name of the file to read
- * @max_chars: maximum number of characters to read
- *
- * Return: number of characters read, or 0 on error
+ * read_textfile - A function that reads a text file and prints
+ * to the POSIX STDOUT
+ * @filename: The filename to open
+ * @letters: The number of letters to read and print
+ * Return: The number of letters read and printed, or 0 on failure
  */
-ssize_t read_file(const char *filename, size_t max_chars)
+ssize_t read_textfile(const char *filename, size_t letters)
 {
-    int fd;
-    ssize_t n_bytes_read, n_bytes_written;
-    char *buffer;
+	int fdo, fdr, fdw;
+	char *temp;
 
-    if (filename == NULL)
-        return (0);
+	if (filename == NULL)
+		return (0);
 
-    buffer = malloc(sizeof(char) * max_chars);
-    if (buffer == NULL)
-        return (0);
+	temp = malloc(sizeof(char) * letters);
+	if (temp == NULL)
+		return (0);
 
-    fd = open(filename, O_RDONLY);
-    if (fd == -1)
-    {
-        free(buffer);
-        return (0);
-    }
+	fdo = open(filename, O_RDONLY);
+	if (fdo < 0)
+	{
+		free(temp);
+		return (0);
+	}
 
-    n_bytes_read = read(fd, buffer, max_chars);
-    if (n_bytes_read == -1)
-    {
-        free(buffer);
-        return (0);
-    }
+	fdr = read(fdo, temp, letters);
+	if (fdr < 0)
+	{
+		free(temp);
+		return (0);
+	}
 
-    n_bytes_written = write(STDOUT_FILENO, buffer, n_bytes_read);
-    free(buffer);
-    close(fd);
+	fdw = write(STDOUT_FILENO, temp, fdr);
+	free(temp);
+	close(fdo);
 
-    if (n_bytes_written == -1)
-        return (0);
-
-    return (n_bytes_read);
+	if (fdw < 0)
+		return (0);
+	return ((ssize_t)fdw);
 }
-
-
